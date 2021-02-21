@@ -1,4 +1,4 @@
-package pacman;
+package pacman.gui;
 
 import java.awt.EventQueue;
 import java.util.Random;

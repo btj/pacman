@@ -1,4 +1,4 @@
-package pacman;
+package pacman.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,6 +14,12 @@ import java.util.function.Supplier;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import pacman.Direction;
+import pacman.Dot;
+import pacman.Ghost;
+import pacman.Maze;
+import pacman.MazeMap;
 
 public class MazeView extends JPanel {
 	
