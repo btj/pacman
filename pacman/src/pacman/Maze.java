@@ -23,8 +23,8 @@ public class Maze {
 		this.random = random;
 		this.map = map;
 		this.pacMan = pacMan;
-		this.ghosts = ghosts;
-		this.dots = dots;
+		this.ghosts = ghosts.clone();
+		this.dots = dots.clone();
 	}
 	
 	public boolean isCompleted() {

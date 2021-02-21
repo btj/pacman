@@ -2,6 +2,10 @@ package pacman;
 
 import java.util.Arrays;
 
+/**
+ * Each instance of this class represents a position in a maze, specified by a row index and a column index.
+ * The top row and the leftmost column have index 0.
+ */
 public class Square {
 	
 	private MazeMap mazeMap;

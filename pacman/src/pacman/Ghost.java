@@ -1,6 +1,5 @@
 package pacman;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Ghost {
@@ -28,18 +27,18 @@ public class Ghost {
 	private static int MOVE_FORWARD_PREFERENCE = 10;
 	
 	public Direction chooseNextMoveDirection(Random random) {
-		int moveForwardPreference = square.canMove(direction) ? MOVE_FORWARD_PREFERENCE : 0;
-		Direction[] passableDirections = square.getPassableDirectionsExcept(direction.getOpposite());
+		int moveForwardPreference = getSquare().canMove(direction) ? MOVE_FORWARD_PREFERENCE : 0;
+		Direction[] passableDirections = getSquare().getPassableDirectionsExcept(getDirection().getOpposite());
 		if (passableDirections.length == 0)
-			return direction.getOpposite();
+			return getDirection().getOpposite();
 		int result = random.nextInt(moveForwardPreference + passableDirections.length);
 		if (result < moveForwardPreference)
-			return direction;
+			return getDirection();
 		return passableDirections[result - moveForwardPreference];
 	}
 	
 	public void move(Random random) {
-		direction = chooseNextMoveDirection(random);
-		setSquare(square.getNeighbor(direction));
+		setDirection(chooseNextMoveDirection(random));
+		setSquare(getSquare().getNeighbor(getDirection()));
 	}
 }
