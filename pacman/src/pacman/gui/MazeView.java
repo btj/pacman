@@ -19,6 +19,7 @@ import pacman.Direction;
 import pacman.Dot;
 import pacman.Ghost;
 import pacman.Maze;
+import pacman.MazeDescriptions;
 import pacman.MazeMap;
 
 public class MazeView extends JPanel {
@@ -63,7 +64,7 @@ public class MazeView extends JPanel {
 	}
 	
 	private void initializeMaze() {
-		maze = new Maze(new Random(), """
+		maze = MazeDescriptions.createMazeFromDescription(new Random(), """
 				#####################
 				#.........#.........#
 				#.###.###.#.###.###.#
@@ -74,7 +75,7 @@ public class MazeView extends JPanel {
 				#.###.#.#####.#.###.#
 				#.....#...#...#.....#
 				#####.### # ###.#####
-				    #.#   G   #.#
+				    #.#   G   #.#    
 				    #.# #   # #.#    
 				#####.# #   # #.#####
 				     .  #GGG#  .     
