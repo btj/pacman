@@ -8,57 +8,50 @@ import java.util.Arrays;
  */
 public class Square {
 	
-	private MazeMap mazeMap;
-	private int rowIndex;
-	private int columnIndex;
+	public MazeMap getMazeMap() { throw new RuntimeException("Not yet implemented"); }
 	
-	public MazeMap getMazeMap() { return mazeMap; }
+	public int getRowIndex() { throw new RuntimeException("Not yet implemented"); }
 	
-	public int getRowIndex() { return rowIndex; }
+	public int getColumnIndex() { throw new RuntimeException("Not yet implemented"); }
 	
-	public int getColumnIndex() { return columnIndex; }
+	public boolean isPassable() { throw new RuntimeException("Not yet implemented"); }
 	
-	public boolean isPassable() { return mazeMap.isPassable(rowIndex, columnIndex); }
+	public static Square of(MazeMap mazeMap, int rowIndex, int columnIndex) {
+		throw new RuntimeException("Not yet implemented");
+	}
 	
-	private Square(MazeMap mazeMap, int rowIndex, int columnIndex) {
-		if (mazeMap == null)
-			throw new IllegalArgumentException("mazeMap must not be null");
-		this.mazeMap = mazeMap;
-		this.rowIndex = rowIndex;
-		this.columnIndex = columnIndex;
+	/**
+	 * Returns this square's neighbor in the given direction.
+	 * If this square has no neigbor in the given direction, return the square that is furthest away in the opposite direction.
+	 */
+	// No formal documentation required
+	public Square getNeighbor(Direction direction) {
+		// Implementation hint: use method java.lang.Math.floorMod.
+		throw new RuntimeException("Not yet implemented");
 	}
 
-	public static Square of(MazeMap mazeMap, int rowIndex, int columnIndex) {
-		return new Square(mazeMap, rowIndex, columnIndex);
-	}
-	
-	public Square getNeighbor(Direction direction) {
-		int rowIndex = this.rowIndex;
-		int columnIndex = this.columnIndex;
-		switch (direction) {
-		case RIGHT -> columnIndex = (columnIndex + 1) % mazeMap.getWidth();
-		case LEFT -> columnIndex = Math.floorMod(columnIndex - 1, mazeMap.getWidth());
-		case DOWN -> rowIndex = (rowIndex + 1) % mazeMap.getHeight();
-		case UP -> rowIndex = Math.floorMod(rowIndex - 1, mazeMap.getHeight());
-		}
-		return Square.of(mazeMap, rowIndex, columnIndex);
-	}
-	
+	/**
+	 * Returns whether this square's neighbor in the given direction is passable.
+	 */
+	// No formal documentation required
 	public boolean canMove(Direction direction) {
-		return getNeighbor(direction).isPassable();
+		throw new RuntimeException("Not yet implemented");
 	}
-	
+
+	/**
+	 * Returns the directions that are different from the given excluded direction and such that the neighbor in that direction is passable.
+	 * The returned array shall have no null elements and shall have no duplicates.
+	 */
+	// No formal documentation required
 	public Direction[] getPassableDirectionsExcept(Direction excludedDirection) {
-		Direction[] result = new Direction[4];
-		int nbDirections = 0;
-		for (Direction direction : Direction.values())
-			if (direction != excludedDirection && canMove(direction))
-				result[nbDirections++] = direction;
-		return Arrays.copyOf(result, nbDirections);
+		throw new RuntimeException("Not yet implemented");
 	}
 	
+	/**
+	 * Returns whether the given square refers to the same {@code MazeMap} object and has the same row and column index as this square.  
+	 */
 	public boolean equals(Square other) {
-		return mazeMap == other.mazeMap && rowIndex == other.rowIndex && columnIndex == other.columnIndex;
+		throw new RuntimeException("Not yet implemented");
 	}
 	
 }

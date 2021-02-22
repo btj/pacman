@@ -2,32 +2,29 @@ package pacman;
 
 import java.util.Random;
 
+/**
+ * Each instance of this class represents a ghost in a Pac-Man maze.
+ */
 public class Ghost {
 	
-	private Square square;
-	private Direction direction;
-
-	public Square getSquare() { return square; }
+	public Square getSquare() { throw new RuntimeException("Not yet implemented"); }
 	
-	public Direction getDirection() { return direction; }
+	/**
+	 * Returns the direction in which this ghost will preferably move next.
+	 */
+	public Direction getDirection() { throw new RuntimeException("Not yet implemented"); }
 	
-	public Ghost(Square square, Direction direction) {
-		this.square = square;
-		this.direction = direction;
-	}
+	public Ghost(Square square, Direction direction) { throw new RuntimeException("Not yet implemented"); }
 	
-	public void setSquare(Square square) {
-		this.square = square;
-	}
+	public void setSquare(Square square) { throw new RuntimeException("Not yet implemented"); }
 	
-	public void setDirection(Direction direction) {
-		this.direction = direction;
-	}
+	public void setDirection(Direction direction) { throw new RuntimeException("Not yet implemented"); }
 	
 	private static int MOVE_FORWARD_PREFERENCE = 10;
 	
+	// No formal document required
 	public Direction chooseNextMoveDirection(Random random) {
-		int moveForwardPreference = getSquare().canMove(direction) ? MOVE_FORWARD_PREFERENCE : 0;
+		int moveForwardPreference = getSquare().canMove(getDirection()) ? MOVE_FORWARD_PREFERENCE : 0;
 		Direction[] passableDirections = getSquare().getPassableDirectionsExcept(getDirection().getOpposite());
 		if (passableDirections.length == 0)
 			return getDirection().getOpposite();
@@ -37,6 +34,7 @@ public class Ghost {
 		return passableDirections[result - moveForwardPreference];
 	}
 	
+	// No formal document required
 	public void move(Random random) {
 		setDirection(chooseNextMoveDirection(random));
 		setSquare(getSquare().getNeighbor(getDirection()));
