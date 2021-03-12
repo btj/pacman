@@ -4,6 +4,8 @@ package pacman;
  * Each instance of this class represents a dot, located at a fixed position in a Pac-Man maze.
  * A dot serves as the food for Pac-Man.
  * 
+ * @invar | getSquare() != null
+ * 
  * @immutable
  */
 public class Dot {
@@ -13,7 +15,9 @@ public class Dot {
 	 */
 	private Square square;
 	
-	/** @basic */
+	/**
+	 * @basic
+	 */
 	public Square getSquare() { return square; }
 	
 	/**

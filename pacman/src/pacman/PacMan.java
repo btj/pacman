@@ -48,6 +48,8 @@ public class PacMan {
 	 * 
 	 * @throws IllegalArgumentException | square == null
 	 * 
+	 * @mutates | this
+	 * 
 	 * @post | getSquare() == square
 	 * @post | getNbLives() == old(getNbLives()) 
 	 */
@@ -59,6 +61,8 @@ public class PacMan {
 	 * Decreases this object's number of lives.
 	 * 
 	 * @throws IllegalStateException | getNbLives() == 0
+	 * 
+	 * @mutates | this
 	 * 
 	 * @post | getNbLives() == old(getNbLives()) - 1
 	 * @post | getSquare() == old(getSquare())

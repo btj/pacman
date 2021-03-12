@@ -23,7 +23,7 @@ public class MazeMap {
 	private final int height;
 	
 	/**
-	 * Stores this maze's squares (in row-major order).
+	 * Stores, for each position in this maze (in row-major order), whether the position is passable.
 	 * 
 	 * @representationObject
 	 */

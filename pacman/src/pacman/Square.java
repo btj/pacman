@@ -49,7 +49,16 @@ public class Square {
 	
 	private Square(MazeMap mazeMap, int rowIndex, int columnIndex) {
 		if (mazeMap == null)
-			throw new IllegalArgumentException("mazeMap must not be null");
+			throw new IllegalArgumentException("`mazeMap` must not be null");
+		if (rowIndex < 0)
+			throw new IllegalArgumentException("`rowIndex` must not be negative");
+		if (mazeMap.getHeight() <= rowIndex)
+			throw new IllegalArgumentException("`rowIndex` must be less than the height of the maze map");
+		if (columnIndex < 0)
+			throw new IllegalArgumentException("`columnIndex` must not be negative");
+		if (mazeMap.getWidth() <= columnIndex)
+			throw new IllegalArgumentException("`columnIndex` must be less than the width of the maze map");
+		
 		this.mazeMap = mazeMap;
 		this.rowIndex = rowIndex;
 		this.columnIndex = columnIndex;
@@ -114,6 +123,9 @@ public class Square {
 	 *       | ) 
 	 */
 	public boolean equals(Square other) {
+		if (other == null)
+			throw new IllegalArgumentException("`other` must not be null");
+		
 		return mazeMap == other.mazeMap && rowIndex == other.rowIndex && columnIndex == other.columnIndex;
 	}
 	

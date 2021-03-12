@@ -54,6 +54,8 @@ public class Ghost {
 	 * 
 	 * @throws IllegalArgumentException | square == null
 	 * 
+	 * @mutates | this
+	 * 
 	 * @post | getSquare() == square
 	 * @post | getDirection() == old(getDirection())
 	 */
@@ -68,6 +70,8 @@ public class Ghost {
 	 * Sets this ghost's direction.
 	 * 
 	 * @throws IllegalArgumentException | direction == null
+	 * 
+	 * @mutates | this
 	 * 
 	 * @post | getDirection() == direction
 	 * @post | getSquare() == old(getSquare())
