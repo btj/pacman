@@ -12,12 +12,19 @@ import java.util.Random;
 public class Ghost {
 	
 	/**
+	 * @invar | originalSquare != null
 	 * @invar | square != null
 	 * @invar | direction != null
 	 */
+	private final Square originalSquare;
 	private Square square;
 	private Direction direction;
+	private GhostState state = new RegularGhostState();
+	
+	public boolean isVulnerable() { return state.isVulnerable(); }
 
+	public Square getOriginalSquare() { return originalSquare; }
+	
 	/**
 	 * @basic
 	 */
@@ -45,7 +52,7 @@ public class Ghost {
 		if (direction == null)
 			throw new IllegalArgumentException("`direction` is null");
 		
-		this.square = square;
+		this.square = this.originalSquare = square;
 		this.direction = direction;
 	}
 	
@@ -99,7 +106,20 @@ public class Ghost {
 	
 	// No formal documentation required.
 	public void move(Random random) {
+		state = state.move(this, random);
+	}
+	
+	public void reallyMove(Random random) {
 		setDirection(chooseNextMoveDirection(random));
 		setSquare(getSquare().getNeighbor(getDirection()));
+	}
+
+	public void pacManAtePowerPellet() {
+		direction = direction.getOpposite();
+		state = new VulnerableGhostState();
+	}
+
+	public void hitBy(PacMan pacMan) {
+		state = state.hitBy(this, pacMan);
 	}
 }
