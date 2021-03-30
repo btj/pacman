@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import pacman.Direction;
 import pacman.Ghost;
 import pacman.MazeMap;
+import pacman.PacMan;
 import pacman.Square;
 
 class GhostTest {
@@ -19,25 +20,28 @@ class GhostTest {
 	Ghost ghost = new Ghost(Square.of(mazeMap, 2, 1), Direction.DOWN);
 
  	@Test
-	void testGetSquare() {
+	void testGhost() {
 		assertTrue(Square.of(mazeMap, 2, 1).equals(ghost.getSquare()));
- 	}
- 	
- 	@Test
- 	void testGetDirection() {
 		assertEquals(Direction.DOWN, ghost.getDirection());
- 	}
- 	
- 	@Test
- 	void testSetSquare() {
 		ghost.setSquare(Square.of(mazeMap, 2, 2));
 		assertTrue(Square.of(mazeMap, 2, 2).equals(ghost.getSquare()));
+		ghost.setDirection(Direction.RIGHT);
+		assertEquals(Direction.RIGHT, ghost.getDirection());
  	}
  	
  	@Test
- 	void testSetDirection() {
-		ghost.setDirection(Direction.RIGHT);
-		assertEquals(Direction.RIGHT, ghost.getDirection());
-	}
+ 	void testPacManAtePowerPellet() {
+ 		ghost.pacManAtePowerPellet();
+ 		assert ghost.isVulnerable();
+ 		assert ghost.getDirection() == Direction.UP;
+ 	}
+ 	
+ 	@Test
+ 	void testHitBy() {
+ 		PacMan pacMan = new PacMan(3, Square.of(mazeMap, 2, 1));
+ 		assert pacMan.getNbLives() == 3;
+ 		ghost.hitBy(pacMan);
+ 		assert pacMan.getNbLives() == 2;
+ 	}
 
 }
