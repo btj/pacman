@@ -2,6 +2,9 @@ package pacman;
 
 public class PowerPellet extends FoodItem {
 	
+	/**
+	 * @post | result == 2
+	 */
 	@Override
 	public int getSize() {
 		return 2;

@@ -2,6 +2,9 @@ package pacman;
 
 public abstract class FoodItem {
 	
+	/**
+	 * @post | 1 <= result
+	 */
 	public abstract int getSize();
 	
 	/**

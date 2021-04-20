@@ -10,6 +10,9 @@ package pacman;
  */
 public class Dot extends FoodItem {
 	
+	/**
+	 * @post | result == 1
+	 */
 	@Override
 	public int getSize() {
 		return 1;
