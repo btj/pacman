@@ -32,6 +32,8 @@ public class DeparturePortal {
 
 	/**
 	 * @basic
+	 * @creates | result
+	 * @peerObjects
 	 */
 	public Set<Wormhole> getWormholes() { return Set.copyOf(wormholes); }
 

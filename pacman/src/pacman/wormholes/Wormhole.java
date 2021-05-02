@@ -8,9 +8,6 @@ import logicalcollections.LogicalSet;
  * 
  * @invar | getArrivalPortal() != null
  * @invar | getArrivalPortal().getWormholes().contains(this)
- * 
- * @author bartj
- *
  */
 public class Wormhole {
 	
@@ -78,14 +75,28 @@ public class Wormhole {
 			throw new IllegalArgumentException("`portal` is null");
 		if (portal == start)
 			throw new IllegalArgumentException("`portal` equals the current departure portal");
+		
 		start.wormholes.remove(this);
 		start = portal;
 		start.wormholes.add(this);
 	}
 	
+	/**
+	 * @throws IllegalArgumentException | portal == null
+	 * @throws IllegalArgumentException | portal == getArrivalPortal()
+	 * 
+	 * @mutates_properties | this.getArrivalPortal(), getArrivalPortal().getWormholes(), portal.getWormholes()
+	 * 
+	 * @post | getArrivalPortal() == portal
+	 * @post | old(getArrivalPortal()).getWormholes().equals(LogicalSet.minus(old(getArrivalPortal().getWormholes()), this))
+	 * @post | portal.getWormholes().equals(LogicalSet.plus(old(portal.getWormholes()), this))
+	 */
 	public void setArrivalPortal(ArrivalPortal portal) {
 		if (portal == null)
 			throw new IllegalArgumentException("`portal` is null");
+		if (portal == end)
+			throw new IllegalArgumentException("`portal` equals the current arrival portal");
+		
 		end.wormholes.remove(this);
 		end = portal;
 		end.wormholes.add(this);
