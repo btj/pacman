@@ -128,7 +128,7 @@ public class MazeView extends JPanel {
 				if (column < map.getWidth() && row < map.getHeight()) {
 					Square square = Square.of(map, row, column);
 					ArrivalPortal arrivalPortal = Arrays.stream(maze.getArrivalPortals()).filter(p -> p.getSquare().equals(square)).findAny().orElse(null);
-					if (arrivalPortal != null) {
+					if (arrivalPortal != null && arrivalPortal != wormhole.getArrivalPortal()) {
 						wormhole.setArrivalPortal(arrivalPortal);
 						repaint();
 					}
@@ -149,8 +149,10 @@ public class MazeView extends JPanel {
 					Square square = Square.of(map, row, column);
 					DeparturePortal departurePortal = Arrays.stream(maze.getDeparturePortals()).filter(p -> p.getSquare().equals(square)).findAny().orElse(null);
 					if (departurePortal != null) {
-						wormhole.setDeparturePortal(departurePortal);
-						repaint();
+						if (departurePortal != wormhole.getDeparturePortal()) {
+							wormhole.setDeparturePortal(departurePortal);
+							repaint();
+						}
 						moveWormholeArrivalPortal(wormhole);
 					}
 				}
