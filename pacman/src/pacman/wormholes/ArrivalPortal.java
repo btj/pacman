@@ -8,14 +8,14 @@ import pacman.Square;
 /**
  * @invar | getSquare() != null
  * @invar | getWormholes() != null
- * @invar | getWormholes().stream().allMatch(wormhole -> wormhole.getArrivalPortal() == this)
+ * @invar | getWormholes().stream().allMatch(wormhole -> wormhole != null && wormhole.getArrivalPortal() == this)
  */
 public class ArrivalPortal {
 	
 	/**
 	 * @invar | square != null
 	 * @invar | wormholes != null
-	 * @invar | wormholes.stream().allMatch(wormhole -> wormhole.end == this)
+	 * @invar | wormholes.stream().allMatch(wormhole -> wormhole != null && wormhole.end == this)
 	 */
 	final Square square;
 	/**
