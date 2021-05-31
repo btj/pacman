@@ -13,30 +13,34 @@ public class Wormhole {
 	
 	/**
 	 * @invar | start != null
-	 * @invar | start.wormholes.contains(this)
-	 * 
-	 * @peerObject
-	 */
-	DeparturePortal start;
-	/**
 	 * @invar | end != null
-	 * @invar | end.wormholes.contains(this)
-	 * 
-	 * @peerObject
 	 */
-	ArrivalPortal end;
-
-	/**
-	 * @basic
-	 * @peerObject
-	 */
-	public DeparturePortal getDeparturePortal() { return start; }
+	private DeparturePortal start;
+	private ArrivalPortal end;
 	
 	/**
-	 * @basic
+	 * @invar | getDeparturePortalInternal().getWormholesInternal().contains(this)
+	 * @invar | getArrivalPortalInternal().getWormholesInternal().contains(this)
+	 * 
+	 * @post | result != null
+	 * @peerObject (package-level)
+	 */
+	DeparturePortal getDeparturePortalInternal() { return start; }
+	/**
+	 * @post | result != null
+	 * @peerObject (package-level)
+	 */
+	ArrivalPortal getArrivalPortalInternal() { return end; }
+
+	/**
 	 * @peerObject
 	 */
-	public ArrivalPortal getArrivalPortal() { return end; }
+	public DeparturePortal getDeparturePortal() { return getDeparturePortalInternal(); }
+	
+	/**
+	 * @peerObject
+	 */
+	public ArrivalPortal getArrivalPortal() { return getArrivalPortalInternal(); }
 
 	/**
 	 * @throws IllegalArgumentException | start == null
@@ -55,9 +59,9 @@ public class Wormhole {
 		if (end == null)
 			throw new IllegalArgumentException("`end` is null");
 		this.start = start;
-		start.wormholes.add(this);
+		start.addWormhole(this);
 		this.end = end;
-		end.wormholes.add(this);
+		end.addWormhole(this);
 	}
 	
 	/**
@@ -76,9 +80,9 @@ public class Wormhole {
 		if (portal == start)
 			throw new IllegalArgumentException("`portal` equals the current departure portal");
 		
-		start.wormholes.remove(this);
+		start.removeWormhole(this);
 		start = portal;
-		start.wormholes.add(this);
+		start.addWormhole(this);
 	}
 	
 	/**
@@ -97,9 +101,9 @@ public class Wormhole {
 		if (portal == end)
 			throw new IllegalArgumentException("`portal` equals the current arrival portal");
 		
-		end.wormholes.remove(this);
+		end.removeWormhole(this);
 		end = portal;
-		end.wormholes.add(this);
+		end.addWormhole(this);
 	}
 	
 }
