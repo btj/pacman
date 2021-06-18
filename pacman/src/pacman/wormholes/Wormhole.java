@@ -66,13 +66,15 @@ public class Wormhole {
 	
 	/**
 	 * @throws IllegalArgumentException | portal == null
-	 * @throws IllegalArgumentException | portal == getDeparturePortal()
 	 * 
 	 * @mutates_properties | this.getDeparturePortal(), getDeparturePortal().getWormholes(), portal.getWormholes()
 	 * 
 	 * @post | getDeparturePortal() == portal
-	 * @post | old(getDeparturePortal()).getWormholes().equals(LogicalSet.minus(old(getDeparturePortal().getWormholes()), this))
-	 * @post | portal.getWormholes().equals(LogicalSet.plus(old(portal.getWormholes()), this))
+	 * @post | portal == old(getDeparturePortal()) ?
+	 *       |     portal.getWormholes().equals(old(portal.getWormholes()))
+	 *       | :
+	 *       |     old(getDeparturePortal()).getWormholes().equals(LogicalSet.minus(old(getDeparturePortal().getWormholes()), this)) &&
+	 *       |     portal.getWormholes().equals(LogicalSet.plus(old(portal.getWormholes()), this))
 	 */
 	public void setDeparturePortal(DeparturePortal portal) {
 		if (portal == null)
@@ -87,13 +89,15 @@ public class Wormhole {
 	
 	/**
 	 * @throws IllegalArgumentException | portal == null
-	 * @throws IllegalArgumentException | portal == getArrivalPortal()
 	 * 
 	 * @mutates_properties | this.getArrivalPortal(), getArrivalPortal().getWormholes(), portal.getWormholes()
 	 * 
 	 * @post | getArrivalPortal() == portal
-	 * @post | old(getArrivalPortal()).getWormholes().equals(LogicalSet.minus(old(getArrivalPortal().getWormholes()), this))
-	 * @post | portal.getWormholes().equals(LogicalSet.plus(old(portal.getWormholes()), this))
+	 * @post | portal == old(getArrivalPortal()) ?
+	 *       |     portal.getWormholes().equals(old(portal.getWormholes()))
+	 *       | :
+	 *       |     old(getArrivalPortal()).getWormholes().equals(LogicalSet.minus(old(getArrivalPortal().getWormholes()), this)) &&
+	 *       |     portal.getWormholes().equals(LogicalSet.plus(old(portal.getWormholes()), this))
 	 */
 	public void setArrivalPortal(ArrivalPortal portal) {
 		if (portal == null)
